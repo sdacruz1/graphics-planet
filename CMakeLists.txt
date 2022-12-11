@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # Sets project name
-project(lab08 LANGUAGES CXX C)
+project(planet LANGUAGES CXX C)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOUIC ON)
@@ -29,20 +29,20 @@ add_executable(${PROJECT_NAME}
   src/mainwindow.cpp
   src/Settings.cpp
   src/glwidget.cpp
-  src/shapes/Triangle.cpp
-  src/shapes/Cube.cpp
+#  src/shapes/Triangle.cpp
+#  src/shapes/Cube.cpp
   src/shapes/Sphere.cpp
-  src/shapes/Cylinder.cpp
-  src/shapes/Cone.cpp
+#  src/shapes/Cylinder.cpp
+#  src/shapes/Cone.cpp
 
   src/mainwindow.h
   src/Settings.h
   src/glwidget.h
-  src/shapes/Triangle.h
-  src/shapes/Cube.h
+#  src/shapes/Triangle.h
+#  src/shapes/Cube.h
   src/shapes/Sphere.h
-  src/shapes/Cylinder.h
-  src/shapes/Cone.h
+#  src/shapes/Cylinder.h
+#  src/shapes/Cone.h
 )
 
 # Specifies libraries to be linked (Qt components, glew, etc)

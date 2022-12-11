@@ -10,11 +10,7 @@
 #include <QMouseEvent>
 #include <QWheelEvent>
 
-#include "shapes/Triangle.h"
-#include "shapes/Cube.h"
 #include "shapes/Sphere.h"
-#include "shapes/Cylinder.h"
-#include "shapes/Cone.h"
 
 QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
 
@@ -79,11 +75,8 @@ private:
 
     // Tracking shape to render
     int m_currShape;
-    Triangle* m_triangle;
-    Cube* m_cube;
+
     Sphere* m_sphere;
-    Cylinder* m_cylinder;
-    Cone* m_cone;
 
     // Tracking params
     int m_currParam1;

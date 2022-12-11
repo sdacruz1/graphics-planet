@@ -211,17 +211,9 @@ void GLWidget::initializeGL()
 void GLWidget::bindVbo()
 {
     // Create the OpenGLShape and get its vertices and normals
-    if (m_currShape == SHAPE_TRIANGLE) {
-        verts = m_triangle->generateShape();
-    } else if (m_currShape == SHAPE_CUBE) {
-        verts = m_cube->generateShape();
-    } else if (m_currShape == SHAPE_SPHERE) {
+
         verts = m_sphere->generateShape();
-    } else if (m_currShape == SHAPE_CYLINDER) {
-        verts = m_cylinder->generateShape();
-    } else if (m_currShape == SHAPE_CONE) {
-        verts = m_cone->generateShape();
-    }
+
 
     m_numTriangles = int(verts.size()) / 6;
 
@@ -286,16 +278,9 @@ void GLWidget::initializeShapesAndParameters() {
     m_currShape = SHAPE_TRIANGLE;
     m_currParam1 = 1;
     m_currParam2 = 1;
-    m_triangle = new Triangle();
-    m_triangle->updateParams();
-    m_cube = new Cube();
-    m_cube->updateParams(m_currParam1);
+
     m_sphere = new Sphere();
     m_sphere->updateParams(m_currParam1, m_currParam2);
-    m_cylinder = new Cylinder();
-    m_cylinder->updateParams(m_currParam1, m_currParam2);
-    m_cone = new Cone();
-    m_cone->updateParams(m_currParam1, m_currParam2);
 }
 
 QMatrix4x4 GLWidget::glmMatToQMat(glm::mat4x4 m) {
@@ -372,17 +357,9 @@ void GLWidget::settingsChange()
 
     // if shape settings change
     if (settings.shapeType != m_currShape) {
-        if (settings.shapeType == SHAPE_TRIANGLE) {
-            m_currShape = SHAPE_TRIANGLE;
-        } else if (settings.shapeType == SHAPE_CUBE) {
-            m_currShape = SHAPE_CUBE;
-        } else if (settings.shapeType == SHAPE_SPHERE) {
+
             m_currShape = SHAPE_SPHERE;
-        } else if (settings.shapeType == SHAPE_CYLINDER) {
-            m_currShape = SHAPE_CYLINDER;
-        } else if (settings.shapeType == SHAPE_CONE) {
-            m_currShape = SHAPE_CONE;
-        }
+
     }
 
     // parameter settings
@@ -390,17 +367,7 @@ void GLWidget::settingsChange()
         m_currParam1 = settings.shapeParameter1;
         m_currParam2 = settings.shapeParameter2;
 
-        if (settings.shapeType == SHAPE_TRIANGLE) {
-            m_triangle->updateParams();
-        } else if (settings.shapeType == SHAPE_CUBE) {
-            m_cube->updateParams(settings.shapeParameter1);
-        } else if (settings.shapeType == SHAPE_SPHERE) {
             m_sphere->updateParams(settings.shapeParameter1, settings.shapeParameter2);
-        } else if (settings.shapeType == SHAPE_CYLINDER) {
-            m_cylinder->updateParams(settings.shapeParameter1, settings.shapeParameter2);
-        } else if (settings.shapeType == SHAPE_CONE) {
-            m_cone->updateParams(settings.shapeParameter1, settings.shapeParameter2);
-        }
     }
 
     bindVbo();
@@ -410,10 +377,7 @@ void GLWidget::settingsChange()
 GLWidget::~GLWidget()
 {
     delete m_sphere;
-    delete m_cone;
-    delete m_cube;
-    delete m_cylinder;
-    delete m_triangle;
+
     if (m_program == nullptr) {
         return;
     } else {

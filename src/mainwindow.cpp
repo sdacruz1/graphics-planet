@@ -52,21 +52,22 @@ void MainWindow::setupUI()
     width_spacer->setFont(font);
 
     // Create button controls to toggle 3D shapes
-    triangleCB = new QRadioButton(); // Triangle button
-    triangleCB->setText(QStringLiteral("Triangle"));
-    triangleCB->setChecked(true); // Default Triangle toggled
+//    triangleCB = new QRadioButton(); // Triangle button
+//    triangleCB->setText(QStringLiteral("Triangle"));
+//    triangleCB->setChecked(true); // Default Triangle toggled
 
-    cubeCB = new QRadioButton(); // Cube button
-    cubeCB->setText(QStringLiteral("Cube"));
+//    cubeCB = new QRadioButton(); // Cube button
+//    cubeCB->setText(QStringLiteral("Cube"));
 
     sphereCB = new QRadioButton(); // Sphere button
     sphereCB->setText(QStringLiteral("Sphere"));
+    sphereCB->setChecked(true); // Default Triangle toggled
 
-    cylinderCB = new QRadioButton(); // Cylinder button
-    cylinderCB->setText(QStringLiteral("Cylinder"));
+//    cylinderCB = new QRadioButton(); // Cylinder button
+//    cylinderCB->setText(QStringLiteral("Cylinder"));
 
-    coneCB = new QRadioButton(); // Cone button
-    coneCB->setText(QStringLiteral("Cone"));
+//    coneCB = new QRadioButton(); // Cone button
+//    coneCB->setText(QStringLiteral("Cone"));
 
     // Create toggle for showing wireframe / normals
     showWireframeNormals = new QCheckBox();
@@ -115,11 +116,11 @@ void MainWindow::setupUI()
 
     // Add the labels and checkbox widgets to vLayout for vertical alignment (order matters!)
     vLayout->addWidget(trimesh_label);
-    vLayout->addWidget(triangleCB);
-    vLayout->addWidget(cubeCB);
+//    vLayout->addWidget(triangleCB);
+//    vLayout->addWidget(cubeCB);s
     vLayout->addWidget(sphereCB);
-    vLayout->addWidget(cylinderCB);
-    vLayout->addWidget(coneCB);
+//    vLayout->addWidget(cylinderCB);
+//    vLayout->addWidget(coneCB);
     vLayout->addWidget(width_spacer);
     vLayout->addWidget(params_label);
     vLayout->addWidget(param1_label);
@@ -133,11 +134,11 @@ void MainWindow::setupUI()
     connectParam2();
 
     // Connects the toggles for the shapes
-    connectTriangle();
-    connectCube();
+//    connectTriangle();
+//    connectCube();
     connectSphere();
-    connectCone();
-    connectCylinder();
+//    connectCone();
+//    connectCylinder();
 
     // Connects the toggle for showing wireframe / normals
     connectWireframeNormals();
@@ -177,36 +178,36 @@ void MainWindow::onValChangeP2(int newValue)
 
 //******************************** Handles Shape Type UI Changes ********************************//
 // triangle
-void MainWindow::connectTriangle()
-{
-    connect(triangleCB, &QRadioButton::clicked, this, &MainWindow::onTriChange);
-}
+//void MainWindow::connectTriangle()
+//{
+//    connect(triangleCB, &QRadioButton::clicked, this, &MainWindow::onTriChange);
+//}
 
-void MainWindow::onTriChange()
-{
-    settings.shapeType = SHAPE_TRIANGLE;
-    p1Slider->setMinimum(1);
-    p2Slider->setMinimum(1);
-    p1Slider->setValue(1);
-    p2Slider->setValue(1);
-    glWidget->settingsChange();
-}
+//void MainWindow::onTriChange()
+//{
+//    settings.shapeType = SHAPE_TRIANGLE;
+//    p1Slider->setMinimum(1);
+//    p2Slider->setMinimum(1);
+//    p1Slider->setValue(1);
+//    p2Slider->setValue(1);
+//    glWidget->settingsChange();
+//}
 
-// cube
-void MainWindow::connectCube()
-{
-    connect(cubeCB, &QRadioButton::clicked, this, &MainWindow::onCubeChange);
-}
+//// cube
+//void MainWindow::connectCube()
+//{
+//    connect(cubeCB, &QRadioButton::clicked, this, &MainWindow::onCubeChange);
+//}
 
-void MainWindow::onCubeChange()
-{
-    settings.shapeType = SHAPE_CUBE;
-    p1Slider->setMinimum(1);
-    p2Slider->setMinimum(1);
-    p1Slider->setValue(1);
-    p2Slider->setValue(1);
-    glWidget->settingsChange();
-}
+//void MainWindow::onCubeChange()
+//{
+//    settings.shapeType = SHAPE_CUBE;
+//    p1Slider->setMinimum(1);
+//    p2Slider->setMinimum(1);
+//    p1Slider->setValue(1);
+//    p2Slider->setValue(1);
+//    glWidget->settingsChange();
+//}
 
 // sphere
 void MainWindow::connectSphere()
@@ -224,37 +225,37 @@ void MainWindow::onSphereChange()
     glWidget->settingsChange();
 }
 
-// cylinder
-void MainWindow::connectCylinder()
-{
-    connect(cylinderCB, &QRadioButton::clicked, this, &MainWindow::onCylinderChange);
-}
+//// cylinder
+//void MainWindow::connectCylinder()
+//{
+//    connect(cylinderCB, &QRadioButton::clicked, this, &MainWindow::onCylinderChange);
+//}
 
-void MainWindow::onCylinderChange()
-{
-    settings.shapeType = SHAPE_CYLINDER;
-    p1Slider->setMinimum(1);
-    p2Slider->setMinimum(3);
-    p1Slider->setValue(1);
-    p2Slider->setValue(3);
-    glWidget->settingsChange();
-}
+//void MainWindow::onCylinderChange()
+//{
+//    settings.shapeType = SHAPE_CYLINDER;
+//    p1Slider->setMinimum(1);
+//    p2Slider->setMinimum(3);
+//    p1Slider->setValue(1);
+//    p2Slider->setValue(3);
+//    glWidget->settingsChange();
+//}
 
 // cone
-void MainWindow::connectCone()
-{
-    connect(coneCB, &QRadioButton::clicked, this, &MainWindow::onConeChange);
-}
+//void MainWindow::connectCone()
+//{
+//    connect(coneCB, &QRadioButton::clicked, this, &MainWindow::onConeChange);
+//}
 
-void MainWindow::onConeChange()
-{
-    settings.shapeType = SHAPE_CONE;
-    p1Slider->setMinimum(1);
-    p2Slider->setMinimum(3);
-    p1Slider->setValue(1);
-    p2Slider->setValue(3);
-    glWidget->settingsChange();
-}
+//void MainWindow::onConeChange()
+//{
+//    settings.shapeType = SHAPE_CONE;
+//    p1Slider->setMinimum(1);
+//    p2Slider->setMinimum(3);
+//    p1Slider->setValue(1);
+//    p2Slider->setValue(3);
+//    glWidget->settingsChange();
+//}
 
 //***************************** Handles Wireframe/Normals UI Changes *****************************//
 void MainWindow::connectWireframeNormals()
@@ -274,10 +275,10 @@ MainWindow::~MainWindow()
     delete(p1Slider);
     delete(p1Box);
     delete(p2Box);
-    delete(triangleCB);
-    delete(cubeCB);
+//    delete(triangleCB);
+//    delete(cubeCB);
     delete(sphereCB);
-    delete(cylinderCB);
-    delete(coneCB);
+//    delete(cylinderCB);
+//    delete(coneCB);
     delete(showWireframeNormals);
 }
