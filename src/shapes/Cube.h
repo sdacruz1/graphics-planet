@@ -15,6 +15,7 @@ public:
     float computePerlin(float x, float y);
     float getHeight(float x, float y);
     void makeCube();
+    float interpolate(float A, float B, float alpha);
 
 private:
     void insertVec3(std::vector<float> &data, glm::vec3 v);

@@ -24,7 +24,7 @@ void Cube::makeCube() {
 }
 
 // Helper for computePerlin() and, possibly, getColor()
-float interpolate(float A, float B, float alpha) {
+float Cube::interpolate(float A, float B, float alpha) {
     // Task 4: implement your easing/interpolation function below
     float ease = 3 * pow(alpha, 2) - 2 * pow(alpha, 3);
 
@@ -32,8 +32,7 @@ float interpolate(float A, float B, float alpha) {
 }
 
 // Samples the (infinite) random vector grid at (row, col)
-glm::vec2 Cube::sampleRandomVector(int row, int col)
-{
+glm::vec2 Cube::sampleRandomVector(int row, int col) {
     std::hash<int> intHash;
     int index = intHash(row * 41 + col * 43) % m_lookupSize;
     return m_randVecLookup.at(index);
@@ -88,7 +87,7 @@ float Cube::getHeight(float x, float y) {
     return z;
 }
 
-///////////////////////////***** BASE *****/////////////////////////
+/////////////////////////***** BASE *****/////////////////////////
 void Cube::makeTile(glm::vec3 topLeft,
                     glm::vec3 topRight,
                     glm::vec3 bottomLeft,
@@ -135,7 +134,7 @@ void Cube::makeFace(glm::vec3 topLeft,
     float xValLong;
     float yVal;
     float yValLong;
-    float Val;// = 0.5f;
+    float Val = 0.5f;
 
 
     float sideLength = 1.0f / m_param1;
@@ -147,16 +146,16 @@ void Cube::makeFace(glm::vec3 topLeft,
             yVal = -0.5f + (y * sideLength);
             yValLong = yVal + sideLength;
 
-            Val = getHeight(xVal, yValLong);
+//            Val = getHeight(xVal, yValLong);
             topLeft = {xVal, yValLong, Val};
 
-            Val = getHeight(xValLong, yValLong);
+//            Val = getHeight(xValLong, yValLong);
             topRight = {xValLong, yValLong, Val};
 
-            Val = getHeight(xVal, yVal);
+//            Val = getHeight(xVal, yVal);
             bottomLeft = {xVal, yVal, Val};
 
-            Val = getHeight(xValLong, yVal);
+//            Val = getHeight(xValLong, yVal);
             bottomRight = {xValLong, yVal, Val};
 
 
