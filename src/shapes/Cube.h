@@ -8,6 +8,13 @@ class Cube
 public:
     void updateParams(int param1);
     std::vector<float> generateShape() { return m_vertexData; }
+    std::vector<glm::vec2> m_randVecLookup;
+    int m_lookupSize;
+
+    glm::vec2 sampleRandomVector(int row, int col);
+    float computePerlin(float x, float y);
+    float getHeight(float x, float y);
+    void makeCube();
 
 private:
     void insertVec3(std::vector<float> &data, glm::vec3 v);
