@@ -11,6 +11,7 @@
 #include <QWheelEvent>
 
 #include "shapes/Sphere.h"
+#include "terraingenerator.h"
 
 QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
 
@@ -41,6 +42,8 @@ protected:
     virtual void wheelEvent(QWheelEvent *event) override;
 
 private:
+    TerrainGenerator m_terrain;
+
     // VAO/VBO
     QOpenGLVertexArrayObject m_vao;
     QOpenGLBuffer m_vbo;

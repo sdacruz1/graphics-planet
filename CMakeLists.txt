@@ -39,6 +39,15 @@ add_executable(${PROJECT_NAME}
   src/terraingenerator.h
 )
 
+# Specifies other files
+qt_add_resources(${PROJECT_NAME} "Resources"
+  PREFIX
+  "/"
+  FILES
+  resources/shader/vertex.vert
+  resources/shader/fragment.frag
+)
+
 # Specifies libraries to be linked (Qt components, glew, etc)
 target_link_libraries(${PROJECT_NAME} PRIVATE
   Qt::Core

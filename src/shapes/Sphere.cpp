@@ -21,6 +21,11 @@ void Sphere::makeTile(glm::vec3 topLeft,
     glm::vec3 BLnormal = glm::normalize(bottomLeft - center);
     glm::vec3 BRnormal = glm::normalize(bottomRight - center);
 
+    // multiply the point by the unique perlin value associated with its x, y ,z value (1 + that?)
+    // need to modify the perlin noise evaluate function to incorporate the z value
+    // topLeft = topLeft * (1 + evaluatePerlinNoise(topLeft))
+
+
     // triangle 1
     insertVec3(m_vertexData, topLeft);
     insertVec3(m_vertexData, TLnormal);
