@@ -6,6 +6,7 @@
 #include <math.h>
 #include <iostream>
 #include "glm/gtx/transform.hpp"
+#include "shapes/Cube.h"
 
 /**
  * ==================================================
@@ -212,7 +213,7 @@ void GLWidget::bindVbo()
 {
     // Create the OpenGLShape and get its vertices and normals
 
-        verts = m_sphere->generateShape();
+        verts = m_cube->generateShape();
 //    verts = m_terrain.generateTerrain();
 
 
@@ -285,8 +286,8 @@ void GLWidget::initializeShapesAndParameters() {
     m_currParam1 = 1;
     m_currParam2 = 1;
 
-    m_sphere = new Sphere();
-    m_sphere->updateParams(m_currParam1, m_currParam2);
+    m_cube = new Cube();
+    m_cube->updateParams(m_currParam1);
 }
 
 QMatrix4x4 GLWidget::glmMatToQMat(glm::mat4x4 m) {
@@ -364,7 +365,7 @@ void GLWidget::settingsChange()
     // if shape settings change
     if (settings.shapeType != m_currShape) {
 
-            m_currShape = SHAPE_SPHERE;
+            m_currShape = SHAPE_CUBE;
 
     }
 
@@ -373,7 +374,7 @@ void GLWidget::settingsChange()
         m_currParam1 = settings.shapeParameter1;
         m_currParam2 = settings.shapeParameter2;
 
-            m_sphere->updateParams(settings.shapeParameter1, settings.shapeParameter2);
+            m_cube->updateParams(settings.shapeParameter1);
     }
 
     bindVbo();
@@ -382,7 +383,7 @@ void GLWidget::settingsChange()
 
 GLWidget::~GLWidget()
 {
-    delete m_sphere;
+    delete m_cube;
 
     if (m_program == nullptr) {
         return;

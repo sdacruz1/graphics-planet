@@ -30,12 +30,14 @@ add_executable(${PROJECT_NAME}
   src/Settings.cpp
   src/glwidget.cpp
   src/shapes/Sphere.cpp
+  src/shapes/Cube.cpp
   src/terraingenerator.cpp
 
   src/mainwindow.h
   src/Settings.h
   src/glwidget.h
   src/shapes/Sphere.h
+  src/shapes/Cube.h
   src/terraingenerator.h
 )
 

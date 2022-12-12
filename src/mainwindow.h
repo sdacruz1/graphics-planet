@@ -26,8 +26,8 @@ private:
     QCheckBox *showWireframeNormals;
 
 //    QRadioButton *triangleCB;
-//    QRadioButton *cubeCB;
-    QRadioButton *sphereCB;
+    QRadioButton *cubeCB;
+//    QRadioButton *sphereCB;
 //    QRadioButton *cylinderCB;
 //    QRadioButton *coneCB;
 
@@ -36,8 +36,8 @@ private:
     void connectWireframeNormals();
 
 //    void connectTriangle();
-//    void connectCube();
-    void connectSphere();
+    void connectCube();
+//    void connectSphere();
 //    void connectCylinder();
 //    void connectCone();
 
@@ -47,8 +47,8 @@ private slots:
     void onWireframeNormalsChange();
 
 //    void onTriChange();
-//    void onCubeChange();
-    void onSphereChange();
+    void onCubeChange();
+//    void onSphereChange();
 //    void onCylinderChange();
 //    void onConeChange();
 };

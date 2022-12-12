@@ -56,12 +56,12 @@ void MainWindow::setupUI()
 //    triangleCB->setText(QStringLiteral("Triangle"));
 //    triangleCB->setChecked(true); // Default Triangle toggled
 
-//    cubeCB = new QRadioButton(); // Cube button
-//    cubeCB->setText(QStringLiteral("Cube"));
+    cubeCB = new QRadioButton(); // Cube button
+    cubeCB->setText(QStringLiteral("Cube"));
+    cubeCB->setChecked(true); // Default Triangle toggled
 
-    sphereCB = new QRadioButton(); // Sphere button
-    sphereCB->setText(QStringLiteral("Sphere"));
-    sphereCB->setChecked(true); // Default Triangle toggled
+//    sphereCB = new QRadioButton(); // Sphere button
+//    sphereCB->setText(QStringLiteral("Sphere"));
 
 //    cylinderCB = new QRadioButton(); // Cylinder button
 //    cylinderCB->setText(QStringLiteral("Cylinder"));
@@ -115,18 +115,18 @@ void MainWindow::setupUI()
     p2Layout->setLayout(l2);
 
     // Add the labels and checkbox widgets to vLayout for vertical alignment (order matters!)
-    vLayout->addWidget(trimesh_label);
+//    vLayout->addWidget(trimesh_label);
 //    vLayout->addWidget(triangleCB);
-//    vLayout->addWidget(cubeCB);s
-    vLayout->addWidget(sphereCB);
+//    vLayout->addWidget(cubeCB);
+//    vLayout->addWidget(sphereCB);
 //    vLayout->addWidget(cylinderCB);
 //    vLayout->addWidget(coneCB);
-    vLayout->addWidget(width_spacer);
+//    vLayout->addWidget(width_spacer);
     vLayout->addWidget(params_label);
     vLayout->addWidget(param1_label);
     vLayout->addWidget(p1Layout);
-    vLayout->addWidget(param2_label);
-    vLayout->addWidget(p2Layout);
+//    vLayout->addWidget(param2_label);
+//    vLayout->addWidget(p2Layout);
     vLayout->addWidget(showWireframeNormals);
 
     // Connects the sliders and number boxes for the parameters
@@ -135,8 +135,8 @@ void MainWindow::setupUI()
 
     // Connects the toggles for the shapes
 //    connectTriangle();
-//    connectCube();
-    connectSphere();
+    connectCube();
+//    connectSphere();
 //    connectCone();
 //    connectCylinder();
 
@@ -193,37 +193,37 @@ void MainWindow::onValChangeP2(int newValue)
 //    glWidget->settingsChange();
 //}
 
-//// cube
-//void MainWindow::connectCube()
-//{
-//    connect(cubeCB, &QRadioButton::clicked, this, &MainWindow::onCubeChange);
-//}
-
-//void MainWindow::onCubeChange()
-//{
-//    settings.shapeType = SHAPE_CUBE;
-//    p1Slider->setMinimum(1);
-//    p2Slider->setMinimum(1);
-//    p1Slider->setValue(1);
-//    p2Slider->setValue(1);
-//    glWidget->settingsChange();
-//}
-
-// sphere
-void MainWindow::connectSphere()
+// cube
+void MainWindow::connectCube()
 {
-    connect(sphereCB, &QRadioButton::clicked, this, &MainWindow::onSphereChange);
+    connect(cubeCB, &QRadioButton::clicked, this, &MainWindow::onCubeChange);
 }
 
-void MainWindow::onSphereChange()
+void MainWindow::onCubeChange()
 {
-    settings.shapeType = SHAPE_SPHERE;
-    p1Slider->setMinimum(2);
-    p2Slider->setMinimum(3);
-    p1Slider->setValue(2);
-    p2Slider->setValue(3);
+    settings.shapeType = SHAPE_CUBE;
+    p1Slider->setMinimum(1);
+    p2Slider->setMinimum(1);
+    p1Slider->setValue(1);
+    p2Slider->setValue(1);
     glWidget->settingsChange();
 }
+
+// sphere
+//void MainWindow::connectSphere()
+//{
+//    connect(sphereCB, &QRadioButton::clicked, this, &MainWindow::onSphereChange);
+//}
+
+//void MainWindow::onSphereChange()
+//{
+//    settings.shapeType = SHAPE_SPHERE;
+//    p1Slider->setMinimum(2);
+//    p2Slider->setMinimum(3);
+//    p1Slider->setValue(2);
+//    p2Slider->setValue(3);
+//    glWidget->settingsChange();
+//}
 
 //// cylinder
 //void MainWindow::connectCylinder()
@@ -276,8 +276,8 @@ MainWindow::~MainWindow()
     delete(p1Box);
     delete(p2Box);
 //    delete(triangleCB);
-//    delete(cubeCB);
-    delete(sphereCB);
+    delete(cubeCB);
+//    delete(sphereCB);
 //    delete(cylinderCB);
 //    delete(coneCB);
     delete(showWireframeNormals);

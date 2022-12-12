@@ -10,7 +10,7 @@
 #include <QMouseEvent>
 #include <QWheelEvent>
 
-#include "shapes/Sphere.h"
+#include "shapes/Cube.h"
 #include "terraingenerator.h"
 
 QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
@@ -79,7 +79,7 @@ private:
     // Tracking shape to render
     int m_currShape;
 
-    Sphere* m_sphere;
+    Cube* m_cube;
 
     // Tracking params
     int m_currParam1;
