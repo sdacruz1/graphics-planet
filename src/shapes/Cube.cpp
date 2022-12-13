@@ -34,7 +34,7 @@ float Cube::interpolate(float A, float B, float alpha) {
 // Samples the (infinite) random vector grid at (row, col)
 glm::vec2 Cube::sampleRandomVector(int row, int col) {
     std::hash<int> intHash;
-    int index = intHash(row * 41 + col * 43) % m_lookupSize; // alert: this is throwing a floating point exception??
+    int index = intHash(row * 41 + col * 43) % m_lookupSize;
     return m_randVecLookup.at(index);
 }
 
@@ -146,16 +146,16 @@ void Cube::makeFace(glm::vec3 topLeft,
             yVal = -0.5f + (y * sideLength);
             yValLong = yVal + sideLength;
 
-            Val = getHeight(xVal, yValLong);
+            Val = getHeight(xVal + 0.5, yValLong + 0.5);
             topLeft = {xVal, yValLong, Val};
 
-            Val = getHeight(xValLong, yValLong);
+            Val = getHeight(xValLong + 0.5, yValLong + 0.5);
             topRight = {xValLong, yValLong, Val};
 
-            Val = getHeight(xVal, yVal);
+            Val = getHeight(xVal + 0.5, yVal + 0.5);
             bottomLeft = {xVal, yVal, Val};
 
-            Val = getHeight(xValLong, yVal);
+            Val = getHeight(xValLong + 0.5, yVal + 0.5);
             bottomRight = {xValLong, yVal, Val};
 
 
