@@ -20,6 +20,8 @@ void Terrain::updateParams(int param1) {
     makeFace();
 }
 
+// ====================================== PERLIN HELPERS ====================================== //
+
 // Helper for computePerlin() and, possibly, getColor()
 float Terrain::interpolate(float A, float B, float alpha) {
     float ease = 3 * pow(alpha, 2) - 2 * pow(alpha, 3);
@@ -79,7 +81,8 @@ float Terrain::getHeight(float x, float y) {
     return z;
 }
 
-/////////////////////////***** BASE *****/////////////////////////
+// ====================================== BASE PLANE ====================================== //
+
 void Terrain::makeTile(glm::vec3 topLeft,
                     glm::vec3 topRight,
                     glm::vec3 bottomLeft,
@@ -113,33 +116,34 @@ void Terrain::makeFace() {
     glm::vec3 topLeft, topRight, bottomLeft, bottomRight;
 
     float m_resolution = 5.0;
-    float m_halfRes = m_resolution / 2.0;
-    float m_heightMultiplier = 6.0;
+    float m_terrainSize = 10.0;
+    float m_halfRes = m_terrainSize / 2.0;
+    float m_heightMultiplier = m_terrainSize; // terrain size gives best default results, but this can be modified as desired
 
     float xVal, xValLong;
-    float yVal ,yValLong;
+    float yVal, yValLong;
     float zVal;
 
 
-    float sideLength = m_resolution / m_param1;
-    for (int x = 0; x < m_param1; x ++) {
+    float sideLength = m_terrainSize / (m_param1 * m_resolution);
+    for (int x = 0; x < (m_param1 * m_resolution); x ++) {
         xVal = -m_halfRes + (x * sideLength);
         xValLong = xVal + sideLength;
 
-        for (int y = 0; y < m_param1; y ++) {
+        for (int y = 0; y < (m_param1 * m_resolution); y ++) {
             yVal = -m_halfRes + (y * sideLength);
             yValLong = yVal + sideLength;
 
-            zVal = m_heightMultiplier * getHeight(xVal + m_halfRes, yValLong + m_halfRes);
+            zVal = m_heightMultiplier * getHeight((xVal + m_halfRes) / m_terrainSize, (yValLong + m_halfRes) / m_terrainSize);
             topLeft = {xVal, yValLong, zVal};
 
-            zVal = m_heightMultiplier * getHeight(xValLong + m_halfRes, yValLong + m_halfRes);
+            zVal = m_heightMultiplier * getHeight((xValLong + m_halfRes) / m_terrainSize, (yValLong + m_halfRes) / m_terrainSize);
             topRight = {xValLong, yValLong, zVal};
 
-            zVal = m_heightMultiplier * getHeight(xVal + m_halfRes, yVal + m_halfRes);
+            zVal = m_heightMultiplier * getHeight((xVal + m_halfRes) / m_terrainSize, (yVal + m_halfRes) / m_terrainSize);
             bottomLeft = {xVal, yVal, zVal};
 
-            zVal = m_heightMultiplier * getHeight(xValLong + m_halfRes, yVal + m_halfRes);
+            zVal = m_heightMultiplier * getHeight((xValLong + m_halfRes) / m_terrainSize, (yVal + m_halfRes) / m_terrainSize);
             bottomRight = {xValLong, yVal, zVal};
 
 
