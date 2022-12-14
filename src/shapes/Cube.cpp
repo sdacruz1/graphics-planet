@@ -119,46 +119,41 @@ void Cube::makeTile(glm::vec3 topLeft,
     insertVec3(m_vertexData, TRnormal);
 }
 
-void Cube::makeFace(glm::vec3 topLeft,
-                    glm::vec3 topRight,
-                    glm::vec3 bottomLeft,
-                    glm::vec3 bottomRight) {
-    // Task 3: create a single side of the cube out of the 4
-    //         given points and makeTile()
-    // Note: think about how param 1 affects the number of triangles on
-    //       the face of the cube
+void Cube::makeFace() {
 
-    // 2 * (param1^2) triangles
-    // 1 / (param1^2) = side length of one triangle
-    // bottomLeft is 0, 0 in row, col style
+    glm::vec3 topLeft, topRight, bottomLeft, bottomRight;
+
+    float m_resolution = 5.0;
+    float m_halfRes = (m_resolution / 2.0);
+    float m_heightMultiplier = 2.0;
 
     float xVal;
     float xValLong;
     float yVal;
     float yValLong;
-    float Val;// = 0.5f;
+    float zVal;
 
 
-    float sideLength = 1.0f / m_param1;
+    float sideLength = m_resolution / m_param1;
     for (int x = 0; x < m_param1; x ++) {
-        xVal = -0.5f + (x * sideLength);
+        xVal = -m_halfRes + (x * sideLength);
         xValLong = xVal + sideLength;
 
         for (int y = 0; y < m_param1; y ++) {
-            yVal = -0.5f + (y * sideLength);
+            yVal = -m_halfRes + (y * sideLength);
             yValLong = yVal + sideLength;
 
-            Val = getHeight(xVal + 0.5, yValLong + 0.5);
-            topLeft = {xVal, yValLong, Val};
+            zVal = m_heightMultiplier * getHeight(xVal + m_halfRes, yValLong + m_halfRes);
+            topLeft = {xVal, yValLong, zVal};
 
-            Val = getHeight(xValLong + 0.5, yValLong + 0.5);
-            topRight = {xValLong, yValLong, Val};
+            zVal = m_heightMultiplier * getHeight(xValLong + m_halfRes, yValLong + m_halfRes);
+            topRight = {xValLong, yValLong, zVal};
 
-            Val = getHeight(xVal + 0.5, yVal + 0.5);
-            bottomLeft = {xVal, yVal, Val};
+            zVal = m_heightMultiplier * getHeight(xVal + m_halfRes, yVal + m_halfRes);
+            bottomLeft = {xVal, yVal, zVal};
 
-            Val = getHeight(xValLong + 0.5, yVal + 0.5);
-            bottomRight = {xValLong, yVal, Val};
+            zVal = m_heightMultiplier * getHeight(xValLong + m_halfRes, yVal + m_halfRes);
+            bottomRight = {xValLong, yVal, zVal};
 
 
             makeTile(topLeft, topRight, bottomLeft, bottomRight);
@@ -169,21 +164,8 @@ void Cube::makeFace(glm::vec3 topLeft,
 
 
 void Cube::setVertexData() {
-    // Uncomment these lines for Task 2, then comment them out for Task 3:
 
-    //     makeTile(glm::vec3(-0.5f,  0.5f, 0.5f),
-    //              glm::vec3( 0.5f,  0.5f, 0.5f),
-    //              glm::vec3(-0.5f, -0.5f, 0.5f),
-    //              glm::vec3( 0.5f, -0.5f, 0.5f));
-
-    // Uncomment these lines for Task 3:
-
-    makeFace(glm::vec3(-0.5f,  0.5f, 0.5f),
-             glm::vec3( 0.5f,  0.5f, 0.5f),
-             glm::vec3(-0.5f, -0.5f, 0.5f),
-             glm::vec3( 0.5f, -0.5f, 0.5f));
-
-    // Task 4: Use the makeFace() function to make all 6 sides of the cube
+    makeFace();
 }
 
 // Inserts a glm::vec3 into a vector of floats.

@@ -24,10 +24,7 @@ private:
                   glm::vec3 topRight,
                   glm::vec3 bottomLeft,
                   glm::vec3 bottomRight);
-    void makeFace(glm::vec3 topLeft,
-                  glm::vec3 topRight,
-                  glm::vec3 bottomLeft,
-                  glm::vec3 bottomRight);
+    void makeFace();
 
     std::vector<float> m_vertexData;
     int m_param1;
