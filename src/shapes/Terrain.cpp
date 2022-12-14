@@ -1,6 +1,6 @@
-#include "Cube.h"
+#include "Terrain.h"
 
-void Cube::updateParams(int param1) {
+void Terrain::updateParams(int param1) {
     m_vertexData = std::vector<float>();
     m_param1 = param1;
     m_lookupSize = 1024;
@@ -21,20 +21,20 @@ void Cube::updateParams(int param1) {
 }
 
 // Helper for computePerlin() and, possibly, getColor()
-float Cube::interpolate(float A, float B, float alpha) {
+float Terrain::interpolate(float A, float B, float alpha) {
     float ease = 3 * pow(alpha, 2) - 2 * pow(alpha, 3);
     return A + ease * (B - A);
 }
 
 // Samples the (infinite) random vector grid at (row, col)
-glm::vec2 Cube::sampleRandomVector(int row, int col) {
+glm::vec2 Terrain::sampleRandomVector(int row, int col) {
     std::hash<int> intHash;
     int index = intHash(row * 41 + col * 43) % m_lookupSize;
     return m_randVecLookup.at(index);
 }
 
 // Computes the intensity of Perlin noise at some point
-float Cube::computePerlin(float x, float y) {
+float Terrain::computePerlin(float x, float y) {
     // Get grid indices (as ints)
     int X = (int)x;
     int Y = (int)y;
@@ -66,7 +66,7 @@ float Cube::computePerlin(float x, float y) {
 
 // Takes a normalized (x, y) position, in range [0,1)
 // Returns a height value, z, by sampling a noise function
-float Cube::getHeight(float x, float y) {
+float Terrain::getHeight(float x, float y) {
 
     float z = 0;
 
@@ -80,7 +80,7 @@ float Cube::getHeight(float x, float y) {
 }
 
 /////////////////////////***** BASE *****/////////////////////////
-void Cube::makeTile(glm::vec3 topLeft,
+void Terrain::makeTile(glm::vec3 topLeft,
                     glm::vec3 topRight,
                     glm::vec3 bottomLeft,
                     glm::vec3 bottomRight) {
@@ -108,7 +108,7 @@ void Cube::makeTile(glm::vec3 topLeft,
     insertVec3(m_vertexData, TRnormal);
 }
 
-void Cube::makeFace() {
+void Terrain::makeFace() {
 
     glm::vec3 topLeft, topRight, bottomLeft, bottomRight;
 
@@ -150,7 +150,7 @@ void Cube::makeFace() {
 }
 
 // Inserts a glm::vec3 into a vector of floats.
-void Cube::insertVec3(std::vector<float> &data, glm::vec3 v) {
+void Terrain::insertVec3(std::vector<float> &data, glm::vec3 v) {
     data.push_back(v.x);
     data.push_back(v.y);
     data.push_back(v.z);

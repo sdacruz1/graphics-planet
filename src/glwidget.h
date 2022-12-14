@@ -10,7 +10,7 @@
 #include <QMouseEvent>
 #include <QWheelEvent>
 
-#include "shapes/Cube.h"
+#include "shapes/Terrain.h"
 #include "terraingenerator.h"
 
 QT_FORWARD_DECLARE_CLASS(QOpenGLShaderProgram)
@@ -42,7 +42,7 @@ protected:
     virtual void wheelEvent(QWheelEvent *event) override;
 
 private:
-    TerrainGenerator m_terrain;
+//    TerrainGenerator m_terrain;
 
     // VAO/VBO
     QOpenGLVertexArrayObject m_vao;
@@ -79,7 +79,7 @@ private:
     // Tracking shape to render
     int m_currShape;
 
-    Cube* m_cube;
+    Terrain* m_terrain;
 
     // Tracking params
     int m_currParam1;

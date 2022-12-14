@@ -3,7 +3,7 @@
 #include <vector>
 #include <glm/glm.hpp>
 
-class Cube
+class Terrain
 {
 public:
     void updateParams(int param1);

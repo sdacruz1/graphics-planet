@@ -6,7 +6,7 @@
 #include <math.h>
 #include <iostream>
 #include "glm/gtx/transform.hpp"
-#include "shapes/Cube.h"
+#include "shapes/Terrain.h"
 
 /**
  * ==================================================
@@ -213,7 +213,7 @@ void GLWidget::bindVbo()
 {
     // Create the OpenGLShape and get its vertices and normals
 
-        verts = m_cube->generateShape();
+        verts = m_terrain->generateShape();
 //    verts = m_terrain.generateTerrain();
 
 
@@ -286,8 +286,8 @@ void GLWidget::initializeShapesAndParameters() {
     m_currParam1 = 1;
     m_currParam2 = 1;
 
-    m_cube = new Cube();
-    m_cube->updateParams(m_currParam1);
+    m_terrain = new Terrain();
+    m_terrain->updateParams(m_currParam1);
 }
 
 QMatrix4x4 GLWidget::glmMatToQMat(glm::mat4x4 m) {
@@ -362,19 +362,12 @@ void GLWidget::settingsChange()
         return;
     }
 
-    // if shape settings change
-    if (settings.shapeType != m_currShape) {
-
-            m_currShape = SHAPE_CUBE;
-
-    }
-
     // parameter settings
     if (settings.shapeParameter1 != m_currParam1 || settings.shapeParameter2 != m_currParam2) {
         m_currParam1 = settings.shapeParameter1;
         m_currParam2 = settings.shapeParameter2;
 
-            m_cube->updateParams(settings.shapeParameter1);
+            m_terrain->updateParams(settings.shapeParameter1);
     }
 
     bindVbo();
@@ -383,7 +376,7 @@ void GLWidget::settingsChange()
 
 GLWidget::~GLWidget()
 {
-    delete m_cube;
+    delete m_terrain;
 
     if (m_program == nullptr) {
         return;
