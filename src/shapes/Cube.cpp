@@ -3,13 +3,15 @@
 void Cube::updateParams(int param1) {
     m_vertexData = std::vector<float>();
     m_param1 = param1;
-    setVertexData();
+    m_lookupSize = 1024;
+
     makeCube();
+    setVertexData();
 }
 
 void Cube::makeCube() {
     // Generate random vector lookup table
-    m_lookupSize = 1024;
+
     m_randVecLookup.reserve(m_lookupSize);
 
     // Initialize random number generator
